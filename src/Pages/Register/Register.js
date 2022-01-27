@@ -85,21 +85,11 @@ const Register = () => {
               style={{ height: "1px" }}
               className="bg-gray-300 md:block hidden w-4/12"
             ></div>
-            <p className="md:mx-2 text-sm font-light text-black-400">
-              Login With Social
-            </p>
+
             <div
               style={{ height: "1px" }}
               className="bg-gray-300 md:block hidden w-4/12"
             ></div>
-          </div>
-
-          <div className="grid md:grid-cols-1 gap-2 mt-7">
-            <div>
-              <button className="text-center w-full text-white bg-blue-900 p-3 duration-300 rounded-sm hover:bg-blue-700">
-                Google
-              </button>
-            </div>
           </div>
 
           <p className="mt-7 text-xs text-center font-light text-black-400">

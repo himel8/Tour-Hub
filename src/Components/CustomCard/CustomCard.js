@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CustomCard = ({ data }) => {
   const { name, price, img, desc } = data;
@@ -20,9 +21,11 @@ const CustomCard = ({ data }) => {
             {desc}
           </p>
           <div className="flex items-center justify-between my-4">
-            <button className="bg-gradient-to-r from-emerald-500 to-lime-500 text-lg text-white font-semibold py-2 px-6 rounded-full  hover:opacity-90 duration-500">
-              Book Now
-            </button>
+            <Link to={`/dashboard/book/${name}`}>
+              <button className="bg-gradient-to-r from-emerald-500 to-lime-500 text-lg text-white font-semibold py-2 px-6 rounded-full  hover:opacity-90 duration-500">
+                Book Now
+              </button>
+            </Link>
             <p className="text-slate-900 text-xl font-semibold">${price}</p>
           </div>
         </div>
