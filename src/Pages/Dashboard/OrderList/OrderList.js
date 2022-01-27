@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ReviewCheck from "../../../Components/ReviewCheck/ReviewCheck";
+import Stripe from "../../../Components/Stripe/Stripe";
 import useAuth from "../../../Hooks/useAuth";
 
 const OrderList = () => {
@@ -70,9 +71,7 @@ const OrderList = () => {
             {myOrder.map((data) => (
               <tbody key={data._id} className="bg-gray-200">
                 <tr className="bg-white border-4 border-gray-200 text-center">
-                  <td className="px-2 py-2 flex flex-row items-center text-md">
-                    {data.serviceName}
-                  </td>
+                  <td className="px-2 py-2 text-md">{data.serviceName}</td>
                   <td>
                     <span className="text-center  font-semibold">
                       <ReviewCheck data={data} />
@@ -80,26 +79,31 @@ const OrderList = () => {
                   </td>
 
                   <td className="px-2 py-2">
-                    {/* {data.action === "unpaid" ? (
+                    {data.action === "unpaid" ? (
                       <Stripe data={data} />
                     ) : (
                       <span className="text-green-600 text-lg uppercase font-bold">
                         paid
                       </span>
-                    )} */}
-                    <span className="text-green-600 text-lg uppercase font-bold">
-                      paid
-                    </span>
+                    )}
                   </td>
                   <td className="px-2 py-2">
-                    <span>prosessing</span>
+                    {data.action === "unpaid" ? (
+                      <span className="text-lg font-semibold text-emerald-600">
+                        Pending
+                      </span>
+                    ) : (
+                      <span className="text-lg font-semibold text-emerald-600">
+                        {data.status}
+                      </span>
+                    )}
                   </td>
                   <td className="px-2 py-2">
                     <button
                       onClick={() => deleteHandler(data)}
-                      className="mx-auto lg:mx-0 hover:underline gradient bg-yellow-400 font-bold text-black my-1 py-2 px-8 shadow-lg uppercase"
+                      className="custom-delete mx-auto lg:mx-0 hover:underline gradient  font-bold text-black my-1 py-2 px-8  uppercase"
                     >
-                      DELETE
+                      <ion-icon name="trash-outline"></ion-icon>
                     </button>
                   </td>
                 </tr>

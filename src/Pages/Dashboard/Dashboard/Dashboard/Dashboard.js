@@ -12,7 +12,7 @@ import OrderList from "../../OrderList/OrderList";
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
-  const { admin, user } = useAuth();
+  const { admin, user, logOut } = useAuth();
   return (
     <div class="relative min-h-screen md:flex">
       {/* <!-- mobile menu bar --> */}
@@ -54,23 +54,36 @@ const Dashboard = () => {
         {/* <!-- nav --> */}
         <nav>
           <ul className="">
-            <li className="py-2 font-semibold hover:underline">
-              <Link to="/dashboard/addservice">Add Service</Link>
-            </li>
-            <li className="py-2 font-semibold hover:underline">
-              <Link to="/dashboard/">Booking List</Link>
-            </li>
-            <li className="py-2 font-semibold hover:underline">
-              <Link to="/dashboard/makeadmin">Make Admin</Link>
-            </li>
-            <li className="py-2 font-semibold hover:underline">
-              <Link to="/dashboard/manageorder">Manage Orders</Link>
-            </li>
-            <li className="py-2 font-semibold hover:underline">
-              <Link to="/dashboard/addblog">Add Blog</Link>
-            </li>
+            {!admin ? (
+              <>
+                <li className="py-2 font-semibold hover:underline">
+                  <Link to="/dashboard/">Booking List</Link>
+                </li>
+
+                <li className="py-2 font-semibold hover:underline">
+                  <Link to="/dashboard/addblog">Add Blog</Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="py-2 font-semibold hover:underline">
+                  <Link to="/dashboard/addservice">Add Service</Link>
+                </li>
+                <li className="py-2 font-semibold hover:underline">
+                  <Link to="/dashboard/makeadmin">Make Admin</Link>
+                </li>
+                <li className="py-2 font-semibold hover:underline">
+                  <Link to="/dashboard/manageorder">Manage Orders</Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
+        <div>
+          <button className="logout-btn" onClick={logOut}>
+            <ion-icon name="log-out-outline"></ion-icon>
+          </button>
+        </div>
       </div>
 
       {/* <!-- content --> */}
@@ -87,13 +100,12 @@ const Dashboard = () => {
         </div>
         <div>
           <Routes>
-            {/* {!admin ? (
-                <Route path="/" element={<MyProfile />} />
-              ) : (
-                <Route path="/" element={<AllMembership />} />
-              )} */}
-            <Route path="/addservice" element={<AddService />} />
-            <Route path="/" element={<OrderList />} />
+            {!admin ? (
+              <Route path="/" element={<OrderList />} />
+            ) : (
+              <Route path="/" element={<AddService />} />
+            )}
+
             <Route
               path="/makeadmin"
               element={
@@ -104,7 +116,14 @@ const Dashboard = () => {
             />
             <Route path="/book/:bookId" element={<Book />} />
             <Route path="/addreview/:reviewId" element={<AddReview />} />
-            <Route path="/manageorder" element={<ManageOrder />} />
+            <Route
+              path="/manageorder"
+              element={
+                <AdminRoute>
+                  <ManageOrder />
+                </AdminRoute>
+              }
+            />
             <Route path="/addblog" element={<AddBlog />} />
             {/* <Route path="/my-profile" element={<MyProfile />} />
               <Route

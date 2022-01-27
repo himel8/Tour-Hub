@@ -100,7 +100,7 @@ const Register = () => {
           </p>
           <p className="mt-3 text-xs text-center font-light text-black-400">
             <span>Back to - </span>
-            <Link to="/home" className="text-blue-900 font-medium">
+            <Link to="/" className="text-blue-900 font-medium">
               Home
             </Link>
           </p>
