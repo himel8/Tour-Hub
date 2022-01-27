@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
   const navLink = [
     { name: "Home", link: "/" },
     { name: "Plans", link: "/plans" },
     { name: "About", link: "/help" },
-    { name: "Blog", link: "/login" },
-    { name: "Review", link: "/login" },
-    { name: "Dashboard", link: "/login" },
+    { name: "Blog", link: "/blog" },
+    { name: "Review", link: "/review" },
   ];
   //   state declear
   const [open, setOpen] = useState(false);
@@ -54,11 +55,31 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
-          <Link to="signup">
-            <button className="bg-gradient-to-r from-emerald-500 to-lime-500 text-lg text-white font-semibold py-2 px-6 rounded-full md:ml-8 hover:opacity-90 duration-500">
-              Sign up
-            </button>
-          </Link>
+          {user.email ? (
+            <>
+              <li className="md:ml-8 text-lg font-semibold md:my-0 my-7">
+                <Link
+                  to="/dashboard"
+                  className="text-gray-800 hover:text-gray-400 duration-500"
+                >
+                  {user?.displayName}
+                </Link>
+              </li>
+
+              <button
+                onClick={logOut}
+                className="bg-gradient-to-r from-emerald-500 to-lime-500 text-lg text-white font-semibold py-2 px-6 rounded-full md:ml-8 hover:opacity-90 duration-500"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link to="/login">
+              <button className="bg-gradient-to-r from-emerald-500 to-lime-500 text-lg text-white font-semibold py-2 px-6 rounded-full md:ml-8 hover:opacity-90 duration-500">
+                Sign In
+              </button>
+            </Link>
+          )}
         </ul>
       </div>
     </div>
