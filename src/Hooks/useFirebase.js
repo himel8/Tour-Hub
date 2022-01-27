@@ -44,7 +44,7 @@ const useFirebase = () => {
           .catch((error) => {});
 
         setSuccessUser(true);
-        const destination = location?.state?.from || "/services";
+        const destination = location?.state?.from || "/plans";
         navigate(destination);
         setError("");
         setError("");
