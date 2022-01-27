@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
+import AdminRoute from "../../../../Components/AdminRoute/AdminRoute";
 import useAuth from "../../../../Hooks/useAuth";
 import AddBlog from "../../AddBlog/AddBlog";
 import AddReview from "../../AddReview/AddReview";
@@ -93,7 +94,14 @@ const Dashboard = () => {
               )} */}
             <Route path="/addservice" element={<AddService />} />
             <Route path="/" element={<OrderList />} />
-            <Route path="/makeadmin" element={<MakeAdmin />} />
+            <Route
+              path="/makeadmin"
+              element={
+                <AdminRoute>
+                  <MakeAdmin />
+                </AdminRoute>
+              }
+            />
             <Route path="/book/:bookId" element={<Book />} />
             <Route path="/addreview/:reviewId" element={<AddReview />} />
             <Route path="/manageorder" element={<ManageOrder />} />

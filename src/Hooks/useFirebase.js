@@ -111,7 +111,7 @@ const useFirebase = () => {
 
   // admin useEffect
   useEffect(() => {
-    fetch(`https://rocky-coast-79726.herokuapp.com/api/users/${user.email}`)
+    fetch(`https://tourhub123.herokuapp.com/users/${user.email}`)
       .then((res) => res.json())
       .then((data) => setAdmin(data.isAdmin));
   }, [user.email]);
@@ -134,7 +134,7 @@ const useFirebase = () => {
   const saveUser = (email, username) => {
     const user = { email, username };
     console.log(user);
-    fetch("https://rocky-coast-79726.herokuapp.com/api/users", {
+    fetch("https://tourhub123.herokuapp.com/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
