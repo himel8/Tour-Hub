@@ -113,7 +113,7 @@ const useFirebase = () => {
   useEffect(() => {
     fetch(`https://tourhub123.herokuapp.com/users/${user.email}`)
       .then((res) => res.json())
-      .then((data) => setAdmin(data.isAdmin));
+      .then((data) => setAdmin(data));
   }, [user.email]);
 
   // log Out
