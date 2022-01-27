@@ -21,7 +21,7 @@ const CustomCard = ({ data }) => {
             {desc}
           </p>
           <div className="flex items-center justify-between my-4">
-            <Link to={`/dashboard/book/${name}`}>
+            <Link to={`/tour/${name}`}>
               <button className="bg-gradient-to-r from-emerald-500 to-lime-500 text-lg text-white font-semibold py-2 px-6 rounded-full  hover:opacity-90 duration-500">
                 Book Now
               </button>

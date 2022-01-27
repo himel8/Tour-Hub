@@ -1,37 +1,40 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 
-const AddService = () => {
-  const [newService, setNewService] = useState({});
+const AddBlog = () => {
+  const { user } = useAuth();
   const navigate = useNavigate();
+
+  const uniqeValue = { name: user.displayName.split(" ")[0] };
+  const [newBlog, setNewBlog] = useState(uniqeValue);
   const handleBlur = (e) => {
     const field = e.target.name;
     const value = e.target.value;
-    const userData = { ...newService };
-    userData[field] = value;
-    setNewService(userData);
+    const blogData = { ...newBlog };
+    blogData[field] = value;
+    setNewBlog(blogData);
   };
   const handleRegister = (e) => {
-    console.log(newService);
-    fetch("http://localhost:5000/services/", {
+    fetch("http://localhost:5000/blogs/", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(newService),
+      body: JSON.stringify(newBlog),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data._id) {
-          alert("Review added successfully");
-          navigate("/plans");
+          alert("Blog added successfully");
+          navigate("/blog");
         }
       });
     e.preventDefault();
   };
   return (
     <div>
-      <h3 className="text-4xl">Add Service</h3>
+      <h3 className="text-4xl">Add a Blog</h3>
       <form onSubmit={handleRegister} action="" className="mt-6">
         <div className="my-5 text-sm">
           <input
@@ -40,15 +43,17 @@ const AddService = () => {
             name="name"
             onBlur={handleBlur}
             className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
-            placeholder="Type Service name"
+            defaultValue={user.displayName.split(" ")[0]}
           ></input>
+        </div>
+        <div className="my-5 text-sm">
           <input
             type="text"
-            id="img"
-            name="img"
+            id="title"
+            name="title"
             onBlur={handleBlur}
             className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
-            placeholder="Type Service Image Link"
+            placeholder="Type Blog Title"
           ></input>
         </div>
         <div className="my-5 text-sm">
@@ -59,26 +64,26 @@ const AddService = () => {
             name="desc"
             onBlur={handleBlur}
             className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
-            placeholder="Type service details"
+            placeholder="Type blog details"
           ></textarea>
         </div>
         <div className="my-5 text-sm">
           <input
-            type="number"
-            id="price"
-            name="price"
+            type="text"
+            id="img"
+            name="img"
             onBlur={handleBlur}
             className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
-            placeholder="Type service Price"
+            placeholder="Type blog image link"
           ></input>
         </div>
 
         <button className="block text-xl text-center text-white bg-gradient-to-r from-emerald-500 to-lime-500 p-3 duration-300 rounded-sm hover:bg-black w-full">
-          Add Service
+          Add Review
         </button>
       </form>
     </div>
   );
 };
 
-export default AddService;
+export default AddBlog;

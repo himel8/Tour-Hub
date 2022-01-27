@@ -1,7 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 
 const AddReview = () => {
-  const [newReview, setNewReview] = useState({});
+  const { reviewId } = useParams();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [serviceName, setServiceName] = useState("");
+  useEffect(() => {
+    fetch(`http://localhost:5000/orders/rev/${reviewId}`)
+      .then((res) => res.json())
+      .then((data) => setServiceName(data));
+  }, [reviewId]);
+  const uniqeValue = {
+    name: user.displayName.split(" ")[0],
+    id: reviewId,
+    title: serviceName,
+  };
+
+  const [newReview, setNewReview] = useState(uniqeValue);
   const handleBlur = (e) => {
     const field = e.target.name;
     const value = e.target.value;
@@ -9,8 +26,22 @@ const AddReview = () => {
     userData[field] = value;
     setNewReview(userData);
   };
+  console.log(newReview);
   const handleRegister = (e) => {
-    console.log(newReview);
+    fetch("http://localhost:5000/reviews/", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newReview),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data._id) {
+          alert("Review added successfully");
+          navigate("/review");
+        }
+      });
     e.preventDefault();
   };
   return (
@@ -20,11 +51,11 @@ const AddReview = () => {
         <div className="my-5 text-sm">
           <input
             type="text"
-            id="name"
-            name="name"
+            id="title"
+            name="title"
             onBlur={handleBlur}
             className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full"
-            placeholder="Type Service name"
+            defaultValue={serviceName}
           ></input>
         </div>
         <div className="my-5 text-sm">

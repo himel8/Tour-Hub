@@ -41,7 +41,7 @@ const Review = () => {
         ))}
       </div>
       <div className="flex justify-center my-8">
-        <Link to="/plans">
+        <Link to="/review">
           <button className="bg-gradient-to-r from-emerald-500 to-lime-500 text-lg text-white font-semibold py-2 px-12 rounded-full  hover:opacity-90 duration-500">
             See more
           </button>

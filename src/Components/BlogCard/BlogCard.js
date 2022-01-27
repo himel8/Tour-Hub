@@ -2,7 +2,10 @@ import React from "react";
 import { BsFillChatFill } from "react-icons/bs";
 
 const BlogCard = ({ data }) => {
-  const { title, name, img, desc, date, comment } = data;
+  const { title, name, img, desc, createdAt } = data;
+
+  const d = new Date(createdAt);
+  const date = d.getHours() + ":" + d.getMinutes() + ", " + d.toDateString();
   return (
     <div className="max-w-md mx-auto mt-4 md:mt-0 sm:mt-0 bg-white rounded-md shadow-md overflow-hidden ">
       <div className="">
@@ -15,7 +18,8 @@ const BlogCard = ({ data }) => {
         </div>
         <div className="flex items-center justify-between mx-3 mt-2 custom-blog">
           <p className="bg-gradient-to-r text-transparent bg-clip-text from-emerald-500 to-lime-500">
-            <ion-icon name="calendar"></ion-icon> <span>{date}</span>
+            <ion-icon name="calendar"></ion-icon>{" "}
+            <span>{date.split(",")[1]}</span>
           </p>
           <p className="bg-gradient-to-r text-transparent bg-clip-text from-emerald-500 to-lime-500">
             <ion-icon name="person"></ion-icon>{" "}
@@ -25,7 +29,7 @@ const BlogCard = ({ data }) => {
             <BsFillChatFill
               style={{ color: "lightseagreen", marginRight: "3px" }}
             />
-            <span>{comment}</span>
+            <span>5</span>
           </p>
         </div>
         <div className="py-3 px-3">
