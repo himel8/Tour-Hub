@@ -42,7 +42,7 @@ const Book = () => {
       .then((data) => {
         if (data._id) {
           alert("order added successfully");
-          // navigate("/dashboard/");
+          navigate("/dashboard/");
         }
       });
     e.preventDefault();

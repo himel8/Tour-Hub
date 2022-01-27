@@ -2,39 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BlogCard from "../../../Components/BlogCard/BlogCard";
 
-const data = [
-  {
-    title: "TOURS IN PARIS",
-    name: "jahid islam",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, ipsa ducimus labore perferendis reiciendis quasi.",
-    price: 1000,
-    rating: 5,
-    img: "https://i.ibb.co/nck2ZQS/Paris.jpg",
-    date: "10/2/2019",
-    comment: 10,
-  },
-  {
-    title: "TOURS IN MOSCOW",
-    name: "borhan ahmed himel",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, ipsa ducimus labore perferendis reiciendis quasi.",
-    price: 1500,
-    rating: 4.5,
-    img: "https://i.ibb.co/Kr1gJdD/Moscow.jpg",
-    date: "10/4/2019",
-    comment: 15,
-  },
-  {
-    title: "TOURS IN NEW YORK",
-    name: "ryhan hossain rahat",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, ipsa ducimus labore perferendis reiciendis quasi.",
-    price: 2000,
-    rating: 4.67,
-    img: "https://i.ibb.co/883cyLp/New-York.jpg",
-    date: "15/2/2019",
-    comment: 20,
-  },
-];
-
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
 
