@@ -13,7 +13,7 @@ const AddService = () => {
   };
   const handleRegister = (e) => {
     console.log(newService);
-    fetch("http://localhost:5000/services/", {
+    fetch("https://tourhub123.herokuapp.com/services/", {
       method: "POST",
       headers: {
         "content-type": "application/json",

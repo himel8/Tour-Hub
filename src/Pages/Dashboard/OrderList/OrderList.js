@@ -9,13 +9,13 @@ const OrderList = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    fetch(`http://localhost:5000/orders/${user.email}`)
+    fetch(`https://tourhub123.herokuapp.com/orders/${user.email}`)
       .then((res) => res.json())
       .then((data) => setMyOrder(data));
   }, [user.email]);
 
   const deleteHandler = (data) => {
-    fetch(`http://localhost:5000/orders/${data._id}`, {
+    fetch(`https://tourhub123.herokuapp.com/orders/${data._id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

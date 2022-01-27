@@ -7,7 +7,7 @@ const Plans = () => {
   const [plans, setPlans] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/services")
+    fetch("https://tourhub123.herokuapp.com/services")
       .then((res) => res.json())
       .then((data) => setPlans(data));
   }, []);

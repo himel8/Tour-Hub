@@ -6,7 +6,7 @@ import "./ReviewCheck.css";
 const ReviewCheck = ({ data }) => {
   const [isReview, setIsReview] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${data._id}`)
+    fetch(`https://tourhub123.herokuapp.com/reviews/${data._id}`)
       .then((res) => res.json())
       .then((data) => setIsReview(data));
   }, [data._id]);

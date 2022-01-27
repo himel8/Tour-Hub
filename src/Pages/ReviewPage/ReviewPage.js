@@ -6,7 +6,7 @@ import ReviewCard from "../../Components/ReviewCard/ReviewCard";
 const ReviewPage = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/reviews")
+    fetch("https://tourhub123.herokuapp.com/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);

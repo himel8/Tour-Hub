@@ -10,7 +10,7 @@ const Book = () => {
   const { bookId } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/services/${bookId}`)
+    fetch(`https://tourhub123.herokuapp.com/services/${bookId}`)
       .then((res) => res.json())
       .then((data) => setServiceId(data[0]));
   }, [bookId]);
@@ -31,7 +31,7 @@ const Book = () => {
     setNewBook(userData);
   };
   const handleRegister = (e) => {
-    fetch("http://localhost:5000/orders", {
+    fetch("https://tourhub123.herokuapp.com/orders", {
       method: "POST",
       headers: {
         "content-type": "application/json",

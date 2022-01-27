@@ -9,7 +9,7 @@ const SingleTourPage = () => {
   const { planId } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/services/${planId}`)
+    fetch(`https://tourhub123.herokuapp.com/services/${planId}`)
       .then((res) => res.json())
       .then((data) => setPlan(data));
   }, [planId]);

@@ -8,7 +8,7 @@ const AddReview = () => {
   const navigate = useNavigate();
   const [serviceName, setServiceName] = useState("");
   useEffect(() => {
-    fetch(`http://localhost:5000/orders/rev/${reviewId}`)
+    fetch(`https://tourhub123.herokuapp.com/orders/rev/${reviewId}`)
       .then((res) => res.json())
       .then((data) => setServiceName(data));
   }, [reviewId]);
@@ -28,7 +28,7 @@ const AddReview = () => {
   };
   console.log(newReview);
   const handleRegister = (e) => {
-    fetch("http://localhost:5000/reviews/", {
+    fetch("https://tourhub123.herokuapp.com/reviews/", {
       method: "POST",
       headers: {
         "content-type": "application/json",

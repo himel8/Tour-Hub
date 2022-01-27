@@ -16,7 +16,7 @@ const AddBlog = () => {
     setNewBlog(blogData);
   };
   const handleRegister = (e) => {
-    fetch("http://localhost:5000/blogs/", {
+    fetch("https://tourhub123.herokuapp.com/blogs/", {
       method: "POST",
       headers: {
         "content-type": "application/json",
